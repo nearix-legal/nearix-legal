@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ةيصوصخلا ةسايس — Nearix</title>
+<style>
+  :root {
+    --paper: #FAF9FD; --card: #FFFFFF; --ink: #231C2B; --muted: #6F6A7D;
+    --accent: #6A3DFF; --accent-soft: #C24AE8; --pink: #FF6F9C; --line: #E4E1ED;
+    --shadow: 0 2px 14px rgba(35, 28, 43, 0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --paper: #171320; --card: #201A2E; --ink: #F1EEF7; --muted: #A79FBD;
+      --accent: #B79CFF; --accent-soft: #E29CF5; --pink: #FF9CB9; --line: #322B44;
+      --shadow: 0 2px 18px rgba(0,0,0,0.35); }
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    line-height: 1.7; margin: 0; padding: 0 20px 80px; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 760px; margin: 0 auto; }
+  header.doc { display: flex; align-items: center; gap: 14px; padding: 40px 0 28px;
+    border-bottom: 1px solid var(--line); margin-bottom: 32px; }
+  .mark { width: 44px; height: 44px; border-radius: 12px;
+    background: linear-gradient(135deg, var(--pink), var(--accent-soft) 55%, var(--accent));
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: var(--shadow); }
+  .mark svg { width: 24px; height: 24px; }
+  .brandline { display: flex; flex-direction: column; gap: 2px; }
+  .brandline .name { font-family: Georgia, "Times New Roman", serif; font-style: italic; font-weight: 700;
+    font-size: 20px; letter-spacing: 0.02em; color: var(--ink); }
+  .eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  h1.title { font-size: clamp(28px, 4vw, 36px); font-weight: 800; margin: 0 0 6px; text-wrap: balance; }
+  .updated { color: var(--muted); font-size: 14px; margin: 0 0 30px; }
+  nav.toc { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px;
+    margin-bottom: 40px; box-shadow: var(--shadow); }
+  nav.toc .toc-title { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+    font-weight: 700; margin-bottom: 10px; }
+  nav.toc ol { columns: 2; margin: 0; padding-inline-start: 20px; font-size: 14.5px; }
+  nav.toc li { margin-bottom: 6px; break-inside: avoid; }
+  nav.toc a { color: var(--ink); text-decoration: none; }
+  nav.toc a:hover { color: var(--accent); }
+  section.doc-section { padding: 26px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 20px; }
+  section.doc-section:last-of-type { border-bottom: none; }
+  h2 { font-size: 19px; font-weight: 800; display: flex; align-items: baseline; gap: 10px; margin: 0 0 12px; }
+  h2 .num { color: var(--accent); font-variant-numeric: tabular-nums; font-size: 15px; font-weight: 700; opacity: 0.8; }
+  p { margin: 0 0 12px; max-width: 65ch; color: var(--ink); }
+  p.lead { color: var(--muted); }
+  ul { margin: 0 0 12px; padding-inline-start: 22px; }
+  li { margin-bottom: 6px; max-width: 62ch; }
+  strong { font-weight: 700; }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 16px; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px;
+    background: var(--card); border: 1px solid var(--line); font-size: 13px; font-weight: 600; color: var(--ink); }
+  .pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  a.link { color: var(--accent); }
+  footer.doc { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted);
+    font-size: 13.5px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  .lang-divider { display: flex; align-items: center; gap: 14px; margin: 60px 0 40px; color: var(--muted);
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; }
+  .lang-divider::before, .lang-divider::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  [dir="ltr"] { text-align: left; }
+  @media (max-width: 560px) { nav.toc ol { columns: 1; } header.doc { padding-top: 28px; } }
+</style>
+</head>
+<body>
+
+<div class="wrap" dir="rtl" lang="ar">
+  <header class="doc">
+    <div class="mark">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 20.5s-7.5-4.6-10-9.3C.6 8 2 4.5 5.3 4c2-.3 3.7.6 4.7 2.2C11 4.6 12.7 3.7 14.7 4 18 4.5 19.4 8 19.9 11.2c-2.5 4.7-9.9 9.3-9.9 9.3z" fill="white"/>
+        <text x="12" y="14.5" font-family="Georgia, serif" font-weight="700" font-size="9" fill="#6A3DFF" text-anchor="middle">N</text>
+      </svg>
+    </div>
+    <div class="brandline">
+      <span class="name">Nearix</span>
+      <span class="eyebrow">Privacy Policy · ةيصوصخلا ةسايس</span>
+    </div>
+  </header>
+
+  <h1 class="title">ةيصوصخلا ةسايس</h1>
+  <p class="updated">2026 ويلوي 11 :ثيدحت رخآ</p>
+  <p class="lead">قيبطت عمجي فيك ةسايسلا هذه حضوت <strong>Nearix</strong> ىلع قفاوت تنأف قيبطتلل كمادختساب .قيبطتلل كمادختسا دنع اهيمحيو اهمدختسيو كتانايب >p/<.انه ةحضوملا تاسرامملا
+
+  <div class="pill-row">
+    <span class="pill"><span class="dot"></span>طقف +18 نيغلابلل</span>
+    <span class="pill"><span class="dot"></span>اًمئاد حاتم باسحلا فذح</span>
+    <span class="pill"><span class="dot"></span>كتانايب عيبن ال</span>
+  </div>
+
+  <nav class="toc" aria-label="ةسايسلا تايوتحم">
+    <div class="toc-title">تايوتحملا</div>
+    <ol>
+      <li><a href="#collect">اهعمجن يتلا تانايبلا</a></li>
+      <li><a href="#use">كتانايب مدختسن فيك</a></li>
+      <li><a href="#third-parties">ةثلاث فارطأ عم تانايبلا ةكراشم</a></li>
+      <li><a href="#retention">اهفذحو تانايبلاب ظافتحالا</a></li>
+      <li><a href="#security">تانايبلا ةيامح</a></li>
+      <li><a href="#children">نيرصاقلا ةيصوصخ</a></li>
+      <li><a href="#rights">كقوقح</a></li>
+      <li><a href="#changes">ةسايسلا ىلع تاليدعت</a></li>
+      <li><a href="#contact">انعم لصاوتلا</a></li>
+    </ol>
+  </nav>
+
+  <section class="doc-section" id="collect">
+    <h2><span class="num">01</span>اهعمجن يتلا تانايبلا</h2>
+    <p>كتبرجت نيسحتو قيبطتلا ليغشتل ةمزاللا تانايبلا طقف عمجن:</p>
+    <ul>
+      <li><strong>لجوج باسح تانايب:</strong> ربع لوخدلا ليجست دنع ينورتكلإلا ديربلا ناونعو مسالا Google Sign-In.</li>
+      <li><strong>يصخشلا فلملا تانايب:</strong> ةيرايتخالا ةيتوصلا ةمدقملاو ،تامامتهالا ،ةيصخشلا ةذبنلا ،ةلضفملا ةغللا ،ةلودلا ،سنجلا ،رمعلا ،روصلا.</li>
+      <li><strong>تاثداحملا ىوتحم:</strong> نيمدختسملا نيب ةلسرملا ةيتوصلا لئاسرلاو روصلاو ةيصنلا لئاسرلا.</li>
+      <li><strong>مادختسالا تانايب:</strong> قيبطتلا لخاد تاباجعإلاو تارايزلاك كتالعافتو ،)لاصتالا ةلاح ضرعل( طاشن رخآ تقو.</li>
+      <li><strong>تانالعإلا تانايب:</strong> اهعمجي ةيساسأ ةينقت تانايبو كزاهجب نالعإلا فرّعم Google AdMob ةبسانم تانالعإ ضرعل.</li>
+    </ul>
+  </section>
+
+  <section class="doc-section" id="use">
+    <h2><span class="num">02</span>كتانايب مدختسن فيك</h2>
+    <ul>
+      <li>فاشتكالا ةزيم نمض نيرخآ نيمدختسمل هضرعو يصخشلا كفلم ءاشنإ.</li>
+      <li>ةشدردلا ربع نيرخآ نيمدختسم نيبو كنيب رشابملا لصاوتلا نيكمت.</li>
+      <li>ةكرتشملا تامامتهالا ىلع ءًانب نيمدختسملا نيب قفاوتلا ةبسنو ،)"ديدج" لثم( تاراشلاو ،لاصتالا ةلاح ضرع.</li>
+      <li>)قيلعتلا وأ رظحلاك( ةفلاخملا تاباسحلا دض تاءارجإ ذاختاو تاغالبلا ةعجارم.</li>
+      <li>لماكلاب يناجملا قيبطتلل ديحولا ليومتلا ردصمك تانالعإلا ضرع.</li>
+    </ul>
+  </section>
+
+  <section class="doc-section" id="third-parties">
+    <h2><span class="num">03</span>ةثلاث فارطأ عم تانايبلا ةكراشم</h2>
+    <p>ةهج يأل كتانايب عيبن الو ،قيبطتلا ليغشتل نيقوثوملا تامدخلا يدوزم نم اًدودحم اًددع مدختسن:</p>
+    <ul>
+      <li><strong>Google Firebase:</strong> تاثداحملاو ةيصخشلا تافلملا تانايب نيزختو لوخدلا ليجستل.</li>
+      <li><strong>Cloudinary:</strong> قيبطتلا لخاد اهعفرت يتلا ةيتوصلا لئاسرلاو روصلا ةفاضتسال.</li>
+      <li><strong>Google AdMob:</strong> ةصاخلا هتسايس قفو ةينقتلا كزاهج تانايب عمجي دق ؛اًناجم قيبطتلا ليومتو تانالعإلا ضرعل.</li>
+    </ul>
+    <p>تانايبلا عم هلماعت مكحت ةلقتسم ةيصوصخ ةسايس دوزم لكل.</p>
+  </section>
+
+  <section class="doc-section" id="retention">
+    <h2><span class="num">04</span>اهفذحو تانايبلاب ظافتحالا</h2>
+    <p>كتاثداحمو يصخشلا كفلم فذحل كلذ يدؤيسو ،)باسحلا فذح ← تادادعإلا( قيبطتلا لخاد نم تقو يأ يف لماكلاب كباسح فذح كنكمي .طشن كباسح املاط كتانايبب ظفتحن >p/<.هيف ةعجر ال يئاهن لكشبو اًروف انتانايب ةدعاق نم كباسحب ةطبترملا تانايبلا لكو
+  </section>
+
+  <section class="doc-section" id="security">
+    <h2><span class="num">05</span>تانايبلا ةيامح</h2>
+    <p>ةمزاللا دودحلا نمض الإ هريغ تانايبل لوصولا مدختسم يأل نكمي ال ثيحب تانايبلا ةدعاق ىلع ةمراص لوصو دعاوق قبَّطتُو ،ةرفّشم تالاصتا ربع كتانايب لقنتُ >p/<.قيبطتلا لمعل
+  </section>
+
+  <section class="doc-section" id="children">
+    <h2><span class="num">06</span>نيرصاقلا ةيصوصخ</h2>
+    <p>مه نمل اًيرصح صصخم قيبطتلا اذه <strong>18 رثكأف ةنس</strong>. دوجوب انملع اذإ .نيرصاق نم تانايب يأ دصق نع عمجن الو ،ليجستلا دنع رمعلا ديكأت بلطن >p/<.اًروف فذحيُس ،رصاقل باسح
+  </section>
+
+  <section class="doc-section" id="rights">
+    <h2><span class="num">07</span>كقوقح</h2>
+    <ul>
+      <li>تقو يأ يف قيبطتلاب ةنزّخملا كتانايب ىلع عالطالا.</li>
+      <li>قيبطتلا نم ةرشابم يصخشلا كفلم تانايب ليدعت.</li>
+      <li>ةدحاو ةطغضب اًيئاهن كتانايب لكو كباسح فذح.</li>
+      <li>كتيصوصخب قلعتم راسفتسا يأل انعم لصاوتلا.</li>
+    </ul>
+  </section>
+
+  <section class="doc-section" id="changes">
+    <h2><span class="num">08</span>ةسايسلا ىلع تاليدعت</h2>
+    <p>هالعأ "ثيدحت رخآ" خيرات ثيدحت عم ةحفصلا هذه ىلع ليدعت يأ رشننس .قيبطتلا روطت ةبكاومل رخآل تقو نم ةسايسلا هذه ثدّحن دق.</p>
+  </section>
+
+  <section class="doc-section" id="contact">
+    <h2><span class="num">09</span>انعم لصاوتلا</h2>
+    <p>ىلع انلسار ،كتانايب وأ ةسايسلا هذه لوح راسفتسا يأل:</p>
+    <p><a class="link" href="mailto:maroissa03@gmail.com">maroissa03@gmail.com</a></p>
+  </section>
+
+  <div class="lang-divider">English version below</div>
+</div>
+
+<div class="wrap" dir="ltr" lang="en">
+  <h1 class="title">Privacy Policy</h1>
+  <p class="updated">Last updated: July 11, 2026</p>
+  <p class="lead">This policy explains how <strong>Nearix</strong> collects, uses, and protects your data. By using the app, you agree to the practices described here.</p>
+
+  <section class="doc-section" id="collect-en">
+    <h2><span class="num">01</span>Information we collect</h2>
+    <ul>
+      <li><strong>Google account data:</strong> your name and email address via Google Sign-In.</li>
+      <li><strong>Profile data:</strong> photos, age, gender, country, preferred language, bio, interests, and an optional voice introduction.</li>
+      <li><strong>Chat content:</strong> text, image, and voice messages exchanged between users.</li>
+      <li><strong>Usage data:</strong> last-active timestamp (for online status), and in-app activity such as profile visits and likes.</li>
+      <li><strong>Advertising data:</strong> your device's advertising identifier and basic technical data collected by Google AdMob to serve ads.</li>
+    </ul>
+  </section>
+
+  <section class="doc-section" id="use-en">
+    <h2><span class="num">02</span>How we use your data</h2>
+    <ul>
+      <li>To create and display your profile to other users in Discover.</li>
+      <li>To enable direct messaging between users.</li>
+      <li>To show online status, badges (like "New"), and shared-interest compatibility.</li>
+      <li>To review reports and act on accounts that violate our terms.</li>
+      <li>To display ads — the app's sole source of funding, and it will always remain free.</li>
+    </ul>
+  </section>
+
+  <section class="doc-section" id="third-parties-en">
+    <h2><span class="num">03</span>Third-party sharing</h2>
+    <p>We rely on a small number of trusted providers and never sell your data:</p>
+    <ul>
+      <li><strong>Google Firebase:</strong> authentication and database storage for profiles and chats.</li>
+      <li><strong>Cloudinary:</strong> hosting for photos and voice messages you upload.</li>
+      <li><strong>Google AdMob:</strong> ad serving; may collect device-level technical data under its own policy.</li>
+    </ul>
+  </section>
+
+  <section class="doc-section" id="retention-en">
+    <h2><span class="num">04</span>Data retention & deletion</h2>
+    <p>We keep your data while your account is active. You can permanently delete your account at any time from Settings → Delete account — this immediately and permanently removes your profile, conversations, and all associated data.</p>
+  </section>
+
+  <section class="doc-section" id="security-en">
+    <h2><span class="num">05</span>Data security</h2>
+    <p>Your data travels over encrypted connections, and strict database access rules ensure no user can access another user's private data beyond what the app needs to function.</p>
+  </section>
+
+  <section class="doc-section" id="children-en">
+    <h2><span class="num">06</span>Children's privacy</h2>
+    <p>This app is strictly for people <strong>18 and older</strong>. We require age confirmation at signup and do not knowingly collect data from minors. Any account found to belong to a minor is deleted immediately.</p>
+  </section>
+
+  <section class="doc-section" id="rights-en">
+    <h2><span class="num">07</span>Your rights</h2>
+    <ul>
+      <li>Access the data stored about you at any time.</li>
+      <li>Edit your profile data directly in the app.</li>
+      <li>Permanently delete your account and all your data in one tap.</li>
+      <li>Contact us with any privacy question.</li>
+    </ul>
+  </section>
+
+  <section class="doc-section" id="changes-en">
+    <h2><span class="num">08</span>Changes to this policy</h2>
+    <p>We may update this policy as the app evolves. Any change will be posted on this page with an updated "Last updated" date above.</p>
+  </section>
+
+  <section class="doc-section" id="contact-en">
+    <h2><span class="num">09</span>Contact us</h2>
+    <p>For any question about this policy or your data, reach us at:</p>
+    <p><a class="link" href="mailto:maroissa03@gmail.com">maroissa03@gmail.com</a></p>
+  </section>
+
+  <footer class="doc">
+    <span>© 2026 Nearix</span>
+    <span>Spark-plan hosted · No data sold, ever</span>
+  </footer>
+</div>
+
+</body>
+</html>

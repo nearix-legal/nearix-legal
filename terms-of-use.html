@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مادختسالا طورش — Nearix</title>
+<style>
+  :root {
+    --paper: #FAF9FD; --card: #FFFFFF; --ink: #231C2B; --muted: #6F6A7D;
+    --accent: #6A3DFF; --accent-soft: #C24AE8; --pink: #FF6F9C; --line: #E4E1ED;
+    --shadow: 0 2px 14px rgba(35, 28, 43, 0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --paper: #171320; --card: #201A2E; --ink: #F1EEF7; --muted: #A79FBD;
+      --accent: #B79CFF; --accent-soft: #E29CF5; --pink: #FF9CB9; --line: #322B44;
+      --shadow: 0 2px 18px rgba(0,0,0,0.35); }
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    line-height: 1.7; margin: 0; padding: 0 20px 80px; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 760px; margin: 0 auto; }
+  header.doc { display: flex; align-items: center; gap: 14px; padding: 40px 0 28px;
+    border-bottom: 1px solid var(--line); margin-bottom: 32px; }
+  .mark { width: 44px; height: 44px; border-radius: 12px;
+    background: linear-gradient(135deg, var(--pink), var(--accent-soft) 55%, var(--accent));
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: var(--shadow); }
+  .mark svg { width: 24px; height: 24px; }
+  .brandline { display: flex; flex-direction: column; gap: 2px; }
+  .brandline .name { font-family: Georgia, "Times New Roman", serif; font-style: italic; font-weight: 700;
+    font-size: 20px; letter-spacing: 0.02em; color: var(--ink); }
+  .eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  h1.title { font-size: clamp(28px, 4vw, 36px); font-weight: 800; margin: 0 0 6px; text-wrap: balance; }
+  .updated { color: var(--muted); font-size: 14px; margin: 0 0 30px; }
+  nav.toc { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px;
+    margin-bottom: 40px; box-shadow: var(--shadow); }
+  nav.toc .toc-title { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+    font-weight: 700; margin-bottom: 10px; }
+  nav.toc ol { columns: 2; margin: 0; padding-inline-start: 20px; font-size: 14.5px; }
+  nav.toc li { margin-bottom: 6px; break-inside: avoid; }
+  nav.toc a { color: var(--ink); text-decoration: none; }
+  nav.toc a:hover { color: var(--accent); }
+  section.doc-section { padding: 26px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 20px; }
+  section.doc-section:last-of-type { border-bottom: none; }
+  h2 { font-size: 19px; font-weight: 800; display: flex; align-items: baseline; gap: 10px; margin: 0 0 12px; }
+  h2 .num { color: var(--accent); font-variant-numeric: tabular-nums; font-size: 15px; font-weight: 700; opacity: 0.8; }
+  p { margin: 0 0 12px; max-width: 65ch; color: var(--ink); }
+  p.lead { color: var(--muted); }
+  ul { margin: 0 0 12px; padding-inline-start: 22px; }
+  li { margin-bottom: 6px; max-width: 62ch; }
+  strong { font-weight: 700; }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 16px; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px;
+    background: var(--card); border: 1px solid var(--line); font-size: 13px; font-weight: 600; color: var(--ink); }
+  .pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  a.link { color: var(--accent); }
+  footer.doc { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted);
+    font-size: 13.5px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  .lang-divider { display: flex; align-items: center; gap: 14px; margin: 60px 0 40px; color: var(--muted);
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; }
+  .lang-divider::before, .lang-divider::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  [dir="ltr"] { text-align: left; }
+  @media (max-width: 560px) { nav.toc ol { columns: 1; } header.doc { padding-top: 28px; } }
+</style>
+</head>
+<body>
+
+<div class="wrap" dir="rtl" lang="ar">
+  <header class="doc">
+    <div class="mark">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 20.5s-7.5-4.6-10-9.3C.6 8 2 4.5 5.3 4c2-.3 3.7.6 4.7 2.2C11 4.6 12.7 3.7 14.7 4 18 4.5 19.4 8 19.9 11.2c-2.5 4.7-9.9 9.3-9.9 9.3z" fill="white"/>
+        <text x="12" y="14.5" font-family="Georgia, serif" font-weight="700" font-size="9" fill="#6A3DFF" text-anchor="middle">N</text>
+      </svg>
+    </div>
+    <div class="brandline">
+      <span class="name">Nearix</span>
+      <span class="eyebrow">Terms of Use · مادختسالا طورش</span>
+    </div>
+  </header>
+
+  <h1 class="title">مادختسالا طورش</h1>
+  <p class="updated">2026 ويلوي 11 :ثيدحت رخآ</p>
+  <p class="lead">قيبطتل كمادختسا مكحت يللا دعاوقلا طورشلا هذه حضوت <strong>Nearix</strong>. اهب مازتلالا ىلع قفاوت تنأف ،قيبطتلل كمادختسا وأ كليجستب >p/<.لماكلاب
+
+  <div class="pill-row">
+    <span class="pill"><span class="dot"></span>طقف +18 نيغلابلل</span>
+    <span class="pill"><span class="dot"></span>لماكلاب يناجم</span>
+    <span class="pill"><span class="dot"></span>ةءاسإلا عم حماست مدع</span>
+  </div>
+
+  <nav class="toc" aria-label="طورشلا تايوتحم">
+    <div class="toc-title">تايوتحملا</div>
+    <ol>
+      <li><a href="#eligibility">ةيلهألا</a></li>
+      <li><a href="#account">كتيلوؤسمو كباسح</a></li>
+      <li><a href="#conduct">لوبقملا كولسلا</a></li>
+      <li><a href="#content">هرشنت يذلا ىوتحملا</a></li>
+      <li><a href="#enforcement">قيلعتلاو رظحلاو غالبإلا</a></li>
+      <li><a href="#ads">ليومتلاو تانالعإلا</a></li>
+      <li><a href="#disclaimer">ةيلوؤسملا ءالخإ</a></li>
+      <li><a href="#termination">باسحلا ءاهنإ</a></li>
+      <li><a href="#changes">طورشلا ىلع تاليدعت</a></li>
+      <li><a href="#contact">انعم لصاوتلا</a></li>
+    </ol>
+  </nav>
+
+  <section class="doc-section" id="eligibility">
+    <h2><span class="num">01</span>ةيلهألا</h2>
+    <p>كرمع نوكي نأ بجي <strong>18 رثكأ وأ ةنس</strong> يف قيبطتلا مادختسال اًينوناق لهؤم كنأب رقت تنأف ،ليجستلا دنع كرمعل كديكأتب .قيبطتلا اذه مادختسال >p/<.كدلب
+  </section>
+
+  <section class="doc-section" id="account">
+    <h2><span class="num">02</span>كتيلوؤسمو كباسح</h2>
+    <ul>
+      <li>يصخشلا كفلمل اهفيضت يللا تامولعملا ةقد نع لوؤسم تنأ.</li>
+      <li>يمهو باسح ءاشنإ وأ رخآ صخش ةيصخش لاحتنا عونمم.</li>
+      <li>رخآ صخشل هلقن وأ هتكراشم زوجي الو يصخش كباسح.</li>
+    </ul>
+  </section>
+
+  <section class="doc-section" id="conduct">
+    <h2><span class="num">03</span>لوبقملا كولسلا</h2>
+    <p>قيبطتلا مادختسا ءانثأ اًتاب اًعنم عنميُ:</p>
+    <ul>
+      <li>رخآ مدختسم يأل ديدهتلا وأ ةءاسإلا وأ شرحتلا.</li>
+      <li>نوناقلل فلاخم وأ ،فينع ،قئال ريغ ىوتحم رشن.</li>
+      <li>نيرخآ نيمدختسم نم ةيلام تامولعم وأ لاومأ بلط وأ لايتحالا تالواحم.</li>
+      <li>ةجعزملا لئاسرلا وأ هب حرّصملا ريغ يراجتلا جيورتلل قيبطتلا مادختسا.</li>
+      <li>نيرخآ نيمدختسم تانايب وأ تاباسحل هب حرّصملا ريغ لوصولل ةلواحم يأ.</li>
+    </ul>
+  </section>
+
+  <section class="doc-section" id="content">
+    <h2><span class="num">04</span>هرشنت يذلا ىوتحملا</h2>
+    <p>ةمدخلا ةعيبط بسح نيرخآلا نيمدختسملل قيبطتلا لخاد ىوتحملا اذه ضرعل اًصيخرت انحنمت كنكل ،اهعفرت ةيتوص تاليجست وأ صوصن وأ روص يأ ةيكلمب ظفتحت.</p>
+  </section>
+
+  <section class="doc-section" id="enforcement">
+    <h2><span class="num">05</span>قيلعتلاو رظحلاو غالبإلا</h2>
+    <p>اذإ قبسم راعشإ نود طورشلا هذه فلاخي باسح يأ فذح وأ قيلعتب قحلاب ظفتحنو ،اًيودي تاغالبلا عجارن .قيبطتلا نم ةرشابم مدختسم يأ رظح وأ نع غالبإلا كنكمي >p/<.رمألا ىعدتسا
+  </section>
+
+  <section class="doc-section" id="ads">
+    <h2><span class="num">06</span>ليومتلاو تانالعإلا</h2>
+    <p>Nearix ريّغتي نل اذهو ،تانالعإلا ضرع ربع اًيرصح قيبطتلا لوَّمي .ةيلخاد تايرتشم وأ تاكارتشا يأ نودب ،لماكلاب يناجم قيبطت.</p>
+  </section>
+
+  <section class="doc-section" id="disclaimer">
+    <h2><span class="num">07</span>ةيلوؤسملا ءالخإ</h2>
+    <p>ميلسلا سحلاو رذحلاب اًمئاد حصنن .ةرشابملا انترطيس راطإ جراخ مدختسم يأ ىوتحم وأ تافرصت ةيلوؤسم لمحتن الو ،نيلقتسم نيمدختسم نيب لصاوتلل ةصنم قيبطتلا >p/<.تنرتنإلا ربع ددج صاخشأ عم لصاوتلا دنع
+  </section>
+
+  <section class="doc-section" id="termination">
+    <h2><span class="num">08</span>باسحلا ءاهنإ</h2>
+    <p>يئاهن لكشب طورشلا هذه فلاخي باسح يأ ءاهنإ وأ قيلعت انل قحي امك .تادادعإلا نم تقو يأ يف كباسح فذح كنكمي.</p>
+  </section>
+
+  <section class="doc-section" id="changes">
+    <h2><span class="num">09</span>طورشلا ىلع تاليدعت</h2>
+    <p>ةثدّحملا طورشلا ىلع ةينمض ةقفاوم ربتعيُ ليدعت يأ دعب قيبطتلا مادختساب رارمتسالا .رخآل تقو نم طورشلا هذه ثدّحن دق.</p>
+  </section>
+
+  <section class="doc-section" id="contact">
+    <h2><span class="num">10</span>انعم لصاوتلا</h2>
+    <p>ىلع انلسار ،طورشلا هذه لوح راسفتسا يأل:</p>
+    <p><a class="link" href="mailto:maroissa03@gmail.com">maroissa03@gmail.com</a></p>
+  </section>
+
+  <div class="lang-divider">English version below</div>
+</div>
+
+<div class="wrap" dir="ltr" lang="en">
+  <h1 class="title">Terms of Use</h1>
+  <p class="updated">Last updated: July 11, 2026</p>
+  <p class="lead">These terms govern your use of <strong>Nearix</strong>. By registering or using the app, you agree to comply with them in full.</p>
+
+  <section class="doc-section" id="eligibility-en">
+    <h2><span class="num">01</span>Eligibility</h2>
+    <p>You must be <strong>18 years or older</strong> to use this app. By confirming your age at signup, you affirm that you're legally permitted to use the app in your jurisdiction.</p>
+  </section>
+
+  <section class="doc-section" id="account-en">
+    <h2><span class="num">02</span>Your account & responsibility</h2>
+    <ul>
+      <li>You're responsible for the accuracy of the information on your profile.</li>
+      <li>Impersonating someone else or creating a fake account is prohibited.</li>
+      <li>Your account is personal and may not be shared or transferred.</li>
+    </ul>
+  </section>
+
+  <section class="doc-section" id="conduct-en">
+    <h2><span class="num">03</span>Acceptable conduct</h2>
+    <p>The following are strictly prohibited while using the app:</p>
+    <ul>
+      <li>Harassment, abuse, or threats toward any other user.</li>
+      <li>Posting inappropriate, violent, or illegal content.</li>
+      <li>Fraud attempts, or requesting money or financial details from other users.</li>
+      <li>Unauthorized commercial promotion or spam.</li>
+      <li>Any attempt to access another user's account or data without authorization.</li>
+    </ul>
+  </section>
+
+  <section class="doc-section" id="content-en">
+    <h2><span class="num">04</span>Content you post</h2>
+    <p>You retain ownership of any photos, text, or voice recordings you upload, but you grant us a license to display that content within the app to other users as the service requires.</p>
+  </section>
+
+  <section class="doc-section" id="enforcement-en">
+    <h2><span class="num">05</span>Reporting, blocking & suspension</h2>
+    <p>You can report or block any user directly from the app. We review reports manually and reserve the right to suspend or delete any account that violates these terms, without prior notice when warranted.</p>
+  </section>
+
+  <section class="doc-section" id="ads-en">
+    <h2><span class="num">06</span>Advertising & funding</h2>
+    <p>Nearix is completely free, with no subscriptions or in-app purchases. The app is funded solely through advertising, and that will not change.</p>
+  </section>
+
+  <section class="doc-section" id="disclaimer-en">
+    <h2><span class="num">07</span>Disclaimer</h2>
+    <p>The app is a platform connecting independent users; we're not responsible for the conduct or content of any user beyond our direct control. Always use good judgment and caution when meeting new people online.</p>
+  </section>
+
+  <section class="doc-section" id="termination-en">
+    <h2><span class="num">08</span>Account termination</h2>
+    <p>You may delete your account at any time from Settings. We also reserve the right to suspend or permanently terminate any account that violates these terms.</p>
+  </section>
+
+  <section class="doc-section" id="changes-en">
+    <h2><span class="num">09</span>Changes to these terms</h2>
+    <p>We may update these terms from time to time. Continued use of the app after a change constitutes acceptance of the updated terms.</p>
+  </section>
+
+  <section class="doc-section" id="contact-en">
+    <h2><span class="num">10</span>Contact us</h2>
+    <p>For any question about these terms, reach us at:</p>
+    <p><a class="link" href="mailto:maroissa03@gmail.com">maroissa03@gmail.com</a></p>
+  </section>
+
+  <footer class="doc">
+    <span>© 2026 Nearix</span>
+    <span>Free forever · Ad-supported</span>
+  </footer>
+</div>
+
+</body>
+</html>
